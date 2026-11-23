@@ -65,9 +65,6 @@
       .cart-btn{position:relative;background:var(--green-soft);color:var(--green);border:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;flex:none}
       .cart-count{position:absolute;top:-4px;right:-4px;background:var(--orange);color:#fff;font-size:.7rem;font-weight:800;min-width:20px;height:20px;border-radius:999px;display:grid;place-items:center;padding:0 5px;transition:transform .25s cubic-bezier(.34,1.8,.5,1)}
       .cart-count.pop{transform:scale(1.45)}
-      .admin-link{display:none}
-      @media(min-width:640px){.admin-link{display:inline-flex}}
-
       /* ---------- Hero ---------- */
       .hero{max-width:1180px;margin:0 auto;padding:2.4rem 1rem 1.6rem;display:grid;gap:2rem;align-items:center}
       @media(min-width:920px){.hero{grid-template-columns:1.05fr .95fr;padding-top:3.4rem}}
@@ -156,18 +153,6 @@
       .info-card p{margin:0;color:var(--ink-2);font-size:.92rem;line-height:1.55}
       .info-card p b{color:var(--ink)}
 
-      /* owner pitch */
-      .pitch{background:var(--green-deep);border-radius:26px;padding:2.2rem 1.4rem;color:#EDF4E6;position:relative;overflow:hidden}
-      @media(min-width:820px){.pitch{padding:2.8rem}}
-      .pitch h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900;letter-spacing:-.02em;margin:.6rem 0 .7rem;max-width:22ch;line-height:1.08}
-      .pitch p{color:#C4D6BC;line-height:1.6;max-width:56ch;margin:0 0 1.4rem}
-      .pitch .chip{background:rgba(234,88,12,.22);color:#FFB27A}
-      .pitch-feats{display:grid;gap:.8rem;margin-bottom:1.8rem}
-      @media(min-width:760px){.pitch-feats{grid-template-columns:repeat(3,1fr)}}
-      .pitch-feats div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:1rem}
-      .pitch-feats b{display:block;font-size:1.5rem;font-weight:900;color:#FF8A3D;font-family:'IBM Plex Mono',monospace}
-      .pitch-feats span{font-size:.88rem;color:#C4D6BC;font-weight:600;line-height:1.45;display:block;margin-top:.25rem}
-
       footer.site{border-top:1px solid var(--line);margin-top:1rem}
       .foot-in{max-width:1180px;margin:0 auto;padding:1.8rem 1rem 2.4rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;color:var(--ink-2);font-size:.86rem}
       .foot-in b{color:var(--ink)}
@@ -178,6 +163,7 @@
 
       /* ---------- Cart drawer ---------- */
       .overlay{position:fixed;inset:0;background:rgba(10,25,15,.5);opacity:0;pointer-events:none;transition:opacity .3s, visibility 0s .3s;z-index:60;visibility:hidden}
+      .overlay[hidden],.drawer[hidden]{display:none}
       .overlay.show{opacity:1;pointer-events:auto;visibility:visible;transition:opacity .3s}
       .drawer{position:fixed;top:0;right:0;height:100dvh;width:min(430px,100vw);background:var(--cream);z-index:70;transform:translateX(105%);transition:transform .38s cubic-bezier(.3,.8,.3,1), visibility 0s .38s;visibility:hidden;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.25)}
       .drawer.open{transform:none;visibility:visible;transition:transform .38s cubic-bezier(.3,.8,.3,1)}
@@ -208,70 +194,6 @@
       .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,80px);background:var(--green-deep);color:#EDF4E6;padding:.8rem 1.3rem;border-radius:999px;font-weight:700;font-size:.9rem;z-index:90;transition:transform .35s cubic-bezier(.3,1.4,.4,1);box-shadow:var(--shadow);display:flex;gap:.5rem;align-items:center;max-width:92vw;text-align:center}
       .toast.show{transform:translate(-50%,0)}
 
-      /* ---------- Admin ---------- */
-      #adminView{display:none}
-      body.admin #adminView{display:block}
-      body.admin #storeView{display:none}
-      .adm-top{max-width:1180px;margin:0 auto;padding:1.4rem 1rem 0;display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
-      .adm-top h1{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:900;letter-spacing:-.02em;margin:0}
-      .demo-tag{background:var(--orange);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;border-radius:999px}
-      @media (prefers-color-scheme: dark){.demo-tag{color:#1A1206}}
-      .seg{margin-left:auto;display:flex;background:var(--cream-2);border:1px solid var(--line);border-radius:999px;padding:.25rem;gap:.25rem}
-      .seg button{border:none;background:transparent;border-radius:999px;padding:.5rem 1.1rem;font-weight:800;font-size:.9rem;color:var(--ink-2);min-height:38px;transition:all .2s}
-      .seg button.on{background:var(--green);color:#FFF7EA}
-      @media (prefers-color-scheme: dark){.seg button.on{color:#0E2417}}
-      .adm-wrap{max-width:1180px;margin:0 auto;padding:1.4rem 1rem 3rem}
-      .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
-      @media(min-width:900px){.kpis{grid-template-columns:repeat(4,1fr)}}
-      .kpi{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.15rem}
-      .kpi .lb{font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:.45rem}
-      .kpi .vl{font-family:'IBM Plex Mono',monospace;font-size:clamp(1.5rem,3.4vw,2rem);font-weight:700;margin:.45rem 0 .3rem;letter-spacing:-.01em}
-      .kpi .dl{font-size:.8rem;font-weight:700}
-      .dl.up{color:var(--green)} .dl.down{color:var(--red)} .dl.warn{color:var(--amber)}
-      .adm-grid{display:grid;gap:.9rem;margin-top:.9rem}
-      @media(min-width:900px){.adm-grid{grid-template-columns:1.6fr 1fr}}
-      .adm-grid2{display:grid;gap:.9rem;margin-top:.9rem}
-      @media(min-width:900px){.adm-grid2{grid-template-columns:1fr 1fr}}
-      .panel-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem}
-      .panel-card h3{margin:0 0 .3rem;font-size:1.05rem;font-weight:900}
-      .panel-card .sub{color:var(--ink-2);font-size:.84rem;font-weight:600;margin-bottom:1rem}
-      .legend{display:flex;gap:1.2rem;font-size:.8rem;font-weight:700;color:var(--ink-2);margin-bottom:.6rem}
-      .legend i{width:12px;height:12px;border-radius:4px;display:inline-block;margin-right:.35rem;vertical-align:-1px}
-      .chart{width:100%;height:auto}
-      .chart .bar-v{fill:var(--green);transform-box:fill-box;transform-origin:bottom;transition:transform .7s cubic-bezier(.2,.8,.3,1)}
-      .chart .bar-g{fill:var(--orange);transform-box:fill-box;transform-origin:bottom;transition:transform .7s cubic-bezier(.2,.8,.3,1) .08s}
-      .chart text{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:var(--ink-2)}
-      .top-item{display:flex;align-items:center;gap:.7rem;padding:.55rem 0;border-bottom:1px dashed var(--line)}
-      .top-item:last-child{border-bottom:none}
-      .top-item .rk{font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--orange);width:22px}
-      .top-item .nm{font-weight:700;font-size:.92rem}
-      .top-item .bar{height:6px;border-radius:99px;background:var(--green-soft);margin-top:.3rem;overflow:hidden}
-      .top-item .bar i{display:block;height:100%;background:var(--green);border-radius:99px;transition:width .7s ease}
-      .top-item .qt{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:.9rem;white-space:nowrap}
-      .top-item .inf{flex:1;min-width:0}
-      table.fiado{width:100%;border-collapse:collapse;font-size:.92rem}
-      table.fiado th{text-align:left;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding:.4rem .3rem;border-bottom:1.5px solid var(--line)}
-      table.fiado td{padding:.6rem .3rem;border-bottom:1px dashed var(--line);font-weight:600}
-      table.fiado td.amt{font-family:'IBM Plex Mono',monospace;font-weight:700;text-align:right}
-      table.fiado th:last-child{text-align:right}
-      .pill{font-size:.7rem;font-weight:800;padding:.28rem .6rem;border-radius:999px;letter-spacing:.04em;white-space:nowrap}
-      .pill.ok{background:var(--green-soft);color:var(--green)}
-      .pill.soon{background:var(--orange-soft);color:var(--orange)}
-      .pill.late{background:#F9E3E1;color:var(--red)}
-      @media (prefers-color-scheme: dark){.pill.late{background:#3A1D1A}}
-      .fiado-total{display:flex;justify-content:space-between;align-items:center;margin-top:.9rem;background:var(--orange-soft);border-radius:14px;padding:.8rem 1rem;font-weight:800}
-      .fiado-total .mono{font-size:1.15rem}
-      .alert-item{display:flex;gap:.75rem;padding:.65rem 0;border-bottom:1px dashed var(--line);align-items:flex-start}
-      .alert-item:last-child{border-bottom:none}
-      .alert-item .ic{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center}
-      .alert-item .ic.stock{background:var(--orange-soft);color:var(--orange)}
-      .alert-item .ic.exp{background:#F9E3E1;color:var(--red)}
-      @media (prefers-color-scheme: dark){.alert-item .ic.exp{background:#3A1D1A}}
-      .alert-item b{font-size:.93rem}
-      .alert-item p{margin:.15rem 0 0;font-size:.83rem;color:var(--ink-2);font-weight:600;line-height:1.45}
-      .alert-item .left{margin-left:auto;text-align:right;flex:none}
-      .adm-note{max-width:1180px;margin:0 auto;padding:0 1rem 2rem;color:var(--ink-2);font-size:.82rem;font-weight:600}
-
       @media (prefers-reduced-motion: reduce){
         *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}
         html{scroll-behavior:auto}
@@ -295,12 +217,7 @@
         <nav class="main">
           <a href="#catalogo">Catálogo</a>
           <a href="#info">Entrega y horarios</a>
-          <a href="#dueno">Para el dueño</a>
         </nav>
-        <button class="btn btn-ghost admin-link" onclick="showAdmin()">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>
-          Ver panel del administrador
-        </button>
         <button class="cart-btn" onclick="openCart()" aria-label="Abrir carrito">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2l2.6 12.4a1.5 1.5 0 0 0 1.5 1.1h7.9a1.5 1.5 0 0 0 1.5-1.2L20.5 7H6"/></svg>
           <span class="cart-count" id="cartCount" style="display:none">0</span>
@@ -402,23 +319,6 @@
       </div>
     </section>
 
-    <section class="blk" id="dueno" style="padding-top:.6rem">
-      <div class="pitch rv">
-        <span class="chip">Para el dueño de la tienda</span>
-        <h2>El dinero de tu tienda, bajo control por fin.</h2>
-        <p>Además de vender en línea, esta página incluye un panel privado para el dueño: cuánto vendiste, qué se está acabando, qué está por caducar y quién te debe del fiado. Sin libretas perdidas.</p>
-        <div class="pitch-feats">
-          <div><b>15%</b><span>de merma promedio en una tiendita sin control de caducidades ni stock.</span></div>
-          <div><b>Fiado</b><span>registrado por cliente, con días y montos. Nada de “creo que me debías…”.</span></div>
-          <div><b>1.6%</b><span>puede ser tu margen si no ves ventas contra gastos todos los días.</span></div>
-        </div>
-        <button class="btn btn-orange" onclick="showAdmin()">
-          Ver panel del administrador
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
-      </div>
-    </section>
-
     <footer class="site">
       <div class="foot-in">
         <span><b>Tu Minisúper</b> · Página de demostración con nombre, precios, datos y número de WhatsApp de ejemplo (55 0000 0000).</span>
@@ -427,90 +327,9 @@
     </footer>
   </div>
 
-  <!-- ================= VISTA PANEL ================= -->
-  <div id="adminView" aria-hidden="true">
-    <div class="ribbon">Panel privado del dueño — Todos los datos son de ejemplo (demo)</div>
-    <div class="adm-top">
-      <button class="btn btn-ghost" onclick="showStore()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-        Volver a la tienda
-      </button>
-      <h1>Panel del administrador</h1>
-      <span class="demo-tag">Datos de ejemplo (demo)</span>
-      <div class="seg" role="group" aria-label="Periodo">
-        <button data-period="hoy" class="on" onclick="setPeriod('hoy')">Hoy</button>
-        <button data-period="semana" onclick="setPeriod('semana')">Semana</button>
-        <button data-period="mes" onclick="setPeriod('mes')">Mes</button>
-      </div>
-    </div>
-
-    <div class="adm-wrap">
-      <div class="kpis">
-        <div class="kpi">
-          <span class="lb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 6.5c-.8-1.2-2.6-2-5-2-3 0-5 1.3-5 3.2 0 4.6 10 2.4 10 7 0 1.9-2 3.3-5 3.3-2.4 0-4.2-.9-5-2.2"/></svg>Ventas</span>
-          <div class="vl" id="kVentas">$0</div>
-          <span class="dl up" id="kVentasDl"></span>
-        </div>
-        <div class="kpi">
-          <span class="lb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l1.5 13.5a2 2 0 0 1-2 2.3h-11a2 2 0 0 1-2-2.3L6 3Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>Pedidos</span>
-          <div class="vl" id="kPedidos">0</div>
-          <span class="dl up" id="kPedidosDl"></span>
-        </div>
-        <div class="kpi">
-          <span class="lb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16v13H4zM4 8l2-4h12l2 4M9 21v-6h6v6"/></svg>Ticket promedio</span>
-          <div class="vl" id="kTicket">$0</div>
-          <span class="dl up" id="kTicketDl"></span>
-        </div>
-        <div class="kpi">
-          <span class="lb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2.5 20h19L12 3ZM12 10v4M12 17.2v.3"/></svg>Merma</span>
-          <div class="vl" id="kMerma">$0</div>
-          <span class="dl warn" id="kMermaDl"></span>
-        </div>
-      </div>
-
-      <div class="adm-grid">
-        <div class="panel-card">
-          <h3>Ventas vs gastos</h3>
-          <p class="sub" id="chartSub">Por hora · datos de ejemplo (demo)</p>
-          <div class="legend">
-            <span><i style="background:var(--green)"></i>Ventas</span>
-            <span><i style="background:var(--orange)"></i>Gastos</span>
-            <span style="margin-left:auto" class="mono" id="chartNet"></span>
-          </div>
-          <svg class="chart" id="chart" viewBox="0 0 560 240" role="img" aria-label="Gráfica de ventas contra gastos"></svg>
-        </div>
-        <div class="panel-card">
-          <h3>Más vendidos</h3>
-          <p class="sub">Unidades vendidas en el periodo · datos de ejemplo (demo)</p>
-          <div id="topList"></div>
-        </div>
-      </div>
-
-      <div class="adm-grid2">
-        <div class="panel-card">
-          <h3>Fiados por cobrar</h3>
-          <p class="sub">La libreta del fiado, pero en orden · datos de ejemplo (demo)</p>
-          <div style="overflow-x:auto">
-            <table class="fiado">
-              <thead><tr><th>Cliente</th><th>Estado</th><th>Días</th><th>Monto</th></tr></thead>
-              <tbody id="fiadoBody"></tbody>
-            </table>
-          </div>
-          <div class="fiado-total"><span>Total por cobrar</span><span class="mono">$3,071</span></div>
-        </div>
-        <div class="panel-card">
-          <h3>Alertas de la tienda</h3>
-          <p class="sub">Stock bajo y productos por caducar · datos de ejemplo (demo)</p>
-          <div id="alertList"></div>
-        </div>
-      </div>
-    </div>
-    <p class="adm-note">Panel de demostración: cifras, clientes y alertas son datos de ejemplo (demo). En la versión real se alimentan de las ventas y el inventario de la tienda.</p>
-  </div>
-
   <!-- ================= CARRITO ================= -->
-  <div class="overlay" id="overlay" onclick="closeCart()"></div>
-  <aside class="drawer" id="drawer" aria-label="Carrito de compras">
+  <div class="overlay" id="overlay" onclick="closeCart()" hidden></div>
+  <aside class="drawer" id="drawer" aria-label="Carrito de compras" hidden>
     <header>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.3 11a2 2 0 0 1-2 1.8H8.3a2 2 0 0 1-2-1.8L5 8Z"/><path d="M8.5 10V6.5a3.5 3.5 0 0 1 7 0V10"/></svg>
       <h2>Tu pedido</h2>
@@ -573,7 +392,6 @@
     ];
     var byId = {}; PRODUCTS.forEach(function(p){ byId[p.id]=p; });
     var money = function(n){ return "$" + n.toLocaleString("es-MX",{minimumFractionDigits:2, maximumFractionDigits:2}); };
-    var money0 = function(n){ return "$" + Math.round(n).toLocaleString("es-MX"); };
 
     /* ==================== TICKER ==================== */
     (function(){
@@ -698,8 +516,16 @@
       }
       document.getElementById("waBtn").href = "https://wa.me/525500000000?text=" + encodeURIComponent(lines.join("\n"));
     }
-    function openCart(){ document.getElementById("drawer").classList.add("open"); document.getElementById("overlay").classList.add("show"); }
-    function closeCart(){ document.getElementById("drawer").classList.remove("open"); document.getElementById("overlay").classList.remove("show"); }
+    function openCart(){
+      var d = document.getElementById("drawer"), o = document.getElementById("overlay");
+      d.hidden = false; o.hidden = false;
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ d.classList.add("open"); o.classList.add("show"); }); });
+    }
+    function closeCart(){
+      var d = document.getElementById("drawer"), o = document.getElementById("overlay");
+      d.classList.remove("open"); o.classList.remove("show");
+      setTimeout(function(){ if(!d.classList.contains("open")){ d.hidden = true; o.hidden = true; } }, 420);
+    }
     document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeCart(); });
 
     /* toast */
@@ -709,134 +535,6 @@
       el.textContent = msg; el.classList.add("show");
       clearTimeout(toastTimer);
       toastTimer = setTimeout(function(){ el.classList.remove("show"); }, 1900);
-    }
-
-    /* ==================== VISTAS ==================== */
-    function showAdmin(){
-      document.body.classList.add("admin");
-      document.getElementById("adminView").setAttribute("aria-hidden","false");
-      window.scrollTo({top:0});
-      renderPanel(currentPeriod);
-    }
-    function showStore(){
-      document.body.classList.remove("admin");
-      document.getElementById("adminView").setAttribute("aria-hidden","true");
-      window.scrollTo({top:0});
-    }
-
-    /* ==================== PANEL (datos de ejemplo) ==================== */
-    var PANEL = {
-      hoy: {
-        ventas:4382, pedidos:63, ticket:69.55, merma:186, mermaPct:"4.2% del día · meta: bajar de 4%",
-        ventasDl:"+8.4% vs ayer", pedidosDl:"+5 pedidos vs ayer", ticketDl:"+$2.10 vs ayer",
-        chartSub:"Por hora · datos de ejemplo (demo)",
-        labels:["8a","10a","12p","2p","4p","6p","8p"],
-        v:[210,480,760,690,540,820,882], g:[320,410,380,450,390,470,520],
-        top:[["Leche entera",38],["Tortillas de maíz",34],["Huevo blanco",29],["Jitomate saladet",26],["Refresco de cola",24]]
-      },
-      semana: {
-        ventas:28940, pedidos:412, ticket:70.24, merma:1240, mermaPct:"4.3% de la semana · bajó 0.6 pts",
-        ventasDl:"+6.1% vs semana pasada", pedidosDl:"+31 pedidos vs semana pasada", ticketDl:"+$1.85 vs semana pasada",
-        chartSub:"Por día · datos de ejemplo (demo)",
-        labels:["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"],
-        v:[3650,3820,3980,4210,4680,5120,3480], g:[2720,2810,2790,2950,3120,3260,2210],
-        top:[["Leche entera",264],["Tortillas de maíz",238],["Huevo blanco",201],["Pan dulce surtido",176],["Jitomate saladet",168]]
-      },
-      mes: {
-        ventas:118650, pedidos:1724, ticket:68.82, merma:5980, mermaPct:"5.0% del mes · arriba de la meta (4%)",
-        ventasDl:"+11.3% vs mes pasado", pedidosDl:"+204 pedidos vs mes pasado", ticketDl:"−$0.90 vs mes pasado",
-        chartSub:"Por semana · datos de ejemplo (demo)",
-        labels:["Sem 1","Sem 2","Sem 3","Sem 4"],
-        v:[27480,28930,30120,32120], g:[20140,20980,21460,21720],
-        top:[["Leche entera",1120],["Tortillas de maíz",1045],["Huevo blanco",902],["Refresco de cola",845],["Jitomate saladet",760]]
-      }
-    };
-    var FIADOS = [
-      ["Don José M.","Vencido","late",12,1240],
-      ["Don Rafa","Vencido","late",9,875],
-      ["Doña Carmen R.","Vence pronto","soon",6,486],
-      ["Familia Torres","Al corriente","ok",3,320],
-      ["Sra. Lupita","Al corriente","ok",1,150]
-    ];
-    var ALERTS = [
-      {t:"stock", b:"Leche entera — quedan 4 litros", p:"Se vende rápido: conviene pedir hoy al proveedor.", r:"Stock bajo"},
-      {t:"stock", b:"Huevo blanco — quedan 6 charolas", p:"Con el ritmo de venta, se acaba mañana al mediodía.", r:"Stock bajo"},
-      {t:"stock", b:"Cloro desinfectante — quedan 2 botellas", p:"Últimas piezas en anaquel.", r:"Stock bajo"},
-      {t:"exp", b:"Pan dulce surtido — caduca mañana", p:"Ponlo en oferta hoy para que no se vuelva merma.", r:"Por caducar"},
-      {t:"exp", b:"Leche entera (lote del lunes) — caduca en 2 días", p:"Muévela al frente del refrigerador.", r:"Por caducar"},
-      {t:"exp", b:"Jugo de naranja — caduca en 3 días", p:"12 piezas en refrigerador.", r:"Por caducar"},
-      {t:"exp", b:"Queso maduro — caduca en 4 días", p:"Revisa precio: puede salir en promoción.", r:"Por caducar"}
-    ];
-    document.getElementById("fiadoBody").innerHTML = FIADOS.map(function(f){
-      return "<tr><td>"+f[0]+'</td><td><span class="pill '+f[2]+'">'+f[1]+'</span></td><td>'+f[3]+" días</td><td class='amt'>"+money0(f[4])+"</td></tr>";
-    }).join("");
-    document.getElementById("alertList").innerHTML = ALERTS.map(function(a){
-      var icon = a.t === "stock"
-        ? '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5V8ZM3 8l9 5 9-5M12 13v8"/></svg>'
-        : '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>';
-      return '<div class="alert-item"><span class="ic '+a.t+'">'+icon+'</span><div><b>'+a.b+'</b><p>'+a.p+'</p></div><span class="left"><span class="pill '+(a.t==="stock" ? "soon" : "late")+'">'+a.r+"</span></span></div>";
-    }).join("");
-
-    var currentPeriod = "hoy";
-    function countUp(el, to, fmt){
-      var start = null, dur = 650;
-      function step(ts){
-        if(!start) start = ts;
-        var k = Math.min(1, (ts - start) / dur), e = 1 - Math.pow(1 - k, 3);
-        el.textContent = fmt(to * e);
-        if(k < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-    function setPeriod(p){
-      currentPeriod = p;
-      document.querySelectorAll(".seg button").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-period")===p); });
-      renderPanel(p);
-    }
-    function renderPanel(p){
-      var d = PANEL[p];
-      countUp(document.getElementById("kVentas"), d.ventas, money0);
-      countUp(document.getElementById("kPedidos"), d.pedidos, function(n){ return Math.round(n).toLocaleString("es-MX"); });
-      countUp(document.getElementById("kTicket"), d.ticket, money);
-      countUp(document.getElementById("kMerma"), d.merma, money0);
-      document.getElementById("kVentasDl").textContent = d.ventasDl;
-      document.getElementById("kPedidosDl").textContent = d.pedidosDl;
-      var tk = document.getElementById("kTicketDl");
-      tk.textContent = d.ticketDl; tk.className = "dl " + (d.ticketDl.indexOf("−") === 0 ? "down" : "up");
-      var mm = document.getElementById("kMermaDl");
-      mm.textContent = d.mermaPct; mm.className = "dl " + (p === "mes" ? "down" : "warn");
-      document.getElementById("chartSub").textContent = d.chartSub;
-      var net = d.v.reduce(function(a,b){return a+b;},0) - d.g.reduce(function(a,b){return a+b;},0);
-      document.getElementById("chartNet").textContent = "Neto: " + money0(net);
-      drawChart(d);
-      var max = d.top[0][1];
-      document.getElementById("topList").innerHTML = d.top.map(function(t, i){
-        return '<div class="top-item"><span class="rk">'+(i+1)+'</span><div class="inf"><span class="nm">'+t[0]+'</span><div class="bar"><i style="width:'+Math.round(t[1]/max*100)+'%"></i></div></div><span class="qt">'+t[1].toLocaleString("es-MX")+' pzas</span></div>';
-      }).join("");
-    }
-    function drawChart(d){
-      var W = 560, H = 240, base = 200, topPad = 18;
-      var max = Math.max.apply(null, d.v.concat(d.g)) * 1.12;
-      var n = d.labels.length, slot = W / n, bw = Math.min(26, slot / 4);
-      var s = "";
-      [0.25, 0.5, 0.75, 1].forEach(function(f){
-        var y = base - (base - topPad) * f;
-        s += '<line x1="0" y1="'+y+'" x2="'+W+'" y2="'+y+'" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 4"/>';
-      });
-      d.labels.forEach(function(lb, i){
-        var cx = slot * i + slot / 2;
-        var hv = (base - topPad) * (d.v[i] / max), hg = (base - topPad) * (d.g[i] / max);
-        s += '<rect class="bar-v" x="'+(cx - bw - 3)+'" y="'+(base - hv)+'" width="'+bw+'" height="'+hv+'" rx="5" style="transform:scaleY(0)"/>';
-        s += '<rect class="bar-g" x="'+(cx + 3)+'" y="'+(base - hg)+'" width="'+bw+'" height="'+hg+'" rx="5" style="transform:scaleY(0)"/>';
-        s += '<text x="'+cx+'" y="'+(base + 20)+'" text-anchor="middle">'+lb+"</text>";
-        s += '<text x="'+(cx - bw/2 - 3)+'" y="'+(base - hv - 6)+'" text-anchor="middle" font-weight="700">'+money0(d.v[i])+"</text>";
-      });
-      s += '<line x1="0" y1="'+base+'" x2="'+W+'" y2="'+base+'" stroke="var(--line)" stroke-width="1.5"/>';
-      var chart = document.getElementById("chart");
-      chart.innerHTML = s;
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){
-        chart.querySelectorAll("rect").forEach(function(r){ r.style.transform = "scaleY(1)"; });
-      }); });
     }
 
     /* ==================== REVEAL ==================== */
